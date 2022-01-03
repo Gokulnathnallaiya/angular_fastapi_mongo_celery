@@ -9,10 +9,10 @@ import io
 
 logger = get_task_logger(__name__)
 app = Celery('tasks',
-             broker='amqp://admin:mypass@rabbitmq:5672',
-             backend='mongodb://mongodb_container:27017/mydb')
+             broker='amqp://admin:mypass@localhost:5672',
+             backend='mongodb://localhost:27017/mydb')
 
-conn = MongoClient("mongodb://mongodb_container:27017/test")
+conn = MongoClient("mongodb://localhost:27017/test")
 
 @app.task()
 def longtime_add(x, y):
