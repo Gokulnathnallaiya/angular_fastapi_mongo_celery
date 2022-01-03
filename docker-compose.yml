@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  fastapi_app:
+    build: './fastapi_mongo'
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mongodb_container
+  mongodb_container:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  rabbitmq:
+        image: "rabbitmq:3-management"
+        environment:
+          - RABBITMQ_DEFAULT_USER=admin
+          - RABBITMQ_DEFAULT_PASS=mypass
+        ports:
+          - "15672:15672"
+          - "5672:5672"
+  flower:
+        image: mher/flower
+        environment: 
+            - CELERY_BROKER_URL=pyamqp://admin:mypass@rabbitmq//
+            - FLOWER_PORT=5555
+        ports: 
+            - 5555:5555
+        depends_on: 
+            - rabbitmq
+  simple_worker:
+    build: './celery_worker'
+    user: nobody
+    ports:
+      - "5557:5555"
+    depends_on:
+      - rabbitmq
+      - fastapi_app
+      - mongodb_container
+

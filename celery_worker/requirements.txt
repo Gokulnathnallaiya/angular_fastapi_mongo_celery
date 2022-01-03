@@ -1,0 +1,7 @@
+celery[mongodb]
+boto3
+pymongo
+azure-storage-blob
+pandas
+typing
+fastapi
