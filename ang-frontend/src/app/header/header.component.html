@@ -1,0 +1,25 @@
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <h5 style="color:aliceblue; cursor: pointer; margin-left: 10px" (click)="gotoRoute('/')"><span
+                style="margin-right:10px" class="bi bi-graph-up"></span>Dataset Explorer</h5>
+        <div class="d-flex">
+            <button class="btn btn-success" *ngIf="!isUserLoggedIn" style="margin-right:10px"
+                (click)="openLoginModal()">Login</button>
+            <button class="btn btn-warning" *ngIf="!isUserLoggedIn" style="margin-right:10px"
+                (click)="openRegisterModal()">Register</button>
+
+            <div class="row" *ngIf="isUserLoggedIn">
+                <div class="col">
+                    <div ngbDropdown class="d-inline-block">
+                        <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>{{email}}</button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem (click)="gotoRoute('/')">New Query</button>
+                            <button ngbDropdownItem (click)="gotoRoute('saved-queries')">My Datasets</button>
+                            <button ngbDropdownItem (click)="logOut()">Log out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

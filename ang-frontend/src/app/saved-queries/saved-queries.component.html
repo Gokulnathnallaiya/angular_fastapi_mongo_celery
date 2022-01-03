@@ -1,0 +1,23 @@
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>FileName</th>
+            <th>Saved On</th>
+            <th>Query Type</th>
+            <th>Path</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let query of savedQueries; let i = index">
+            <td>{{i +1 }}</td>
+            <td>{{query["filename"]}}</td>
+            <td>{{query["createdAt"] | date:'dd/MM/yyyy'}}</td>
+            <td>{{query["queryType"] | uppercase}}</td>
+            <td><a href="{{query['path']}}">Open Path</a></td>
+            <td><a href="{{download_file(query['filename'])}}">Download</a></td>
+
+        </tr>
+    </tbody>
+</table>
