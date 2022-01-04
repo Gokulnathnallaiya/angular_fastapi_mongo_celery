@@ -2,6 +2,7 @@ version: "3.7"
 services:
   angular_app:
     build: './ang-frontend'
+    container_name: angular_app
     ports:
       - "4201:80"
     depends_on:
@@ -10,6 +11,7 @@ services:
       - mynetwork
   fastapi_app:
     build: './fastapi_mongo'
+    container_name: fastapi_app
     ports:
       - "9000:9000"
     depends_on:
@@ -18,12 +20,14 @@ services:
       - mynetwork
   mongodb_container:
     image: mongo:latest
+    container_name: mongodb_container
     ports:
       - "27017:27017"
     networks:
       - mynetwork
   rabbitmq:
     image: "rabbitmq:3-management"
+    container_name: rabbitmq
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=mypass
@@ -45,6 +49,7 @@ services:
         - mynetwork
   simple_worker:
     build: './celery_worker'
+    container_name: simple_worker
     user: nobody
     ports:
       - "5557:5555"
