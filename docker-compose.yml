@@ -51,8 +51,6 @@ services:
     build: './celery_worker'
     container_name: simple_worker
     user: nobody
-    ports:
-      - "5557:5555"
     depends_on:
       - rabbitmq
       - fastapi_app

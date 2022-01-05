@@ -33,7 +33,6 @@ async def fetch_data(query: Query):
         df = pd.read_csv(query.path).describe()
     elif query.queryType == "all":
         df = pd.read_csv(query.path)
-
     print(df)
 
     if (df is not None):

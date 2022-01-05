@@ -10,12 +10,12 @@ COPY ./ /app/
 
 ARG configuration=production
 
-RUN npm run build -- --output-path=./dist/out --configuration $configuration
+RUN npm run build --prod --output-path=./dist/ang-frontend
 
 #stage 2
 
 FROM nginx:1.15.8-alpine
 
-COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
+COPY --from=build-stage /app/dist/ang-frontend/ /usr/share/nginx/html
 
  

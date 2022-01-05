@@ -53,9 +53,7 @@ def delete_blob(filename: str, container: str):
     try:
         blob_client = blob_service_client.get_blob_client(
             container=container, blob=filename)
-
         blob_client.delete_blob()
-
         return response_json(message="success")
     except Exception as e:
         return response_json(message=e.message, status=500)
