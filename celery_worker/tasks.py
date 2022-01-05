@@ -15,14 +15,6 @@ app = Celery('tasks',
 conn = MongoClient("mongodb://mongodb_container:27017/test")
 
 @app.task()
-def longtime_add(x, y):
-    logger.info('Got Request - Starting work ')
-    time.sleep(20)
-    logger.info('Work Finished ')
-    return x + y
-
-    
-@app.task()
 def save_query(path, queryType, email):
     logger.info('Got Request - Starting work ')
     df=pd.read_csv(path)

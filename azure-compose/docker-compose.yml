@@ -1,0 +1,63 @@
+version: "3.7"
+services:
+  angular_app:
+    image: gokulnath98/bosch-task_angular_app
+    container_name: angular_app
+    ports:
+      - "80:80"
+    depends_on:
+      - fastapi_app
+    networks:
+      - mynetwork
+  fastapi_app:
+    image: gokulnath98/bosch-task_fastapi_app
+    container_name: fastapi_app
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mongodb_container
+    networks:
+      - mynetwork
+  mongodb_container:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    networks:
+      - mynetwork
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+        - mynetwork
+  flower:
+    image: mher/flower
+    environment: 
+        - CELERY_BROKER_URL=pyamqp://admin:mypass@rabbitmq//
+        - FLOWER_PORT=5555
+    ports: 
+        - 5555:5555
+    depends_on: 
+        - rabbitmq
+    networks:
+        - mynetwork
+  simple_worker:
+    image: gokulnath98/bosch-task_simple_worker
+    container_name: simple_worker
+    user: nobody
+    depends_on:
+      - rabbitmq
+      - fastapi_app
+      - mongodb_container
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    name: mynetwork
+
