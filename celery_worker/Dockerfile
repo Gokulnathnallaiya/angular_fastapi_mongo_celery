@@ -1,13 +1,17 @@
-FROM python:3.8-slim
+FROM python:3.7
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
+
+COPY kaggle.json /root/.kaggle/kaggle.json
+RUN chmod 600 /root/.kaggle/kaggle.json
+WORKDIR /simple_worker
 # layer caching for faster builds
-COPY requirements.txt /
-RUN pip install -r /requirements.txt
+
 
 #COPY app.py /app.py
-ADD . /simple_worker
-WORKDIR /simple_worker
+COPY . /simple_worker
 
-ENTRYPOINT celery -A tasks worker --loglevel=info
+
 #-Q celery_worker
-#ENTRYPOINT ['celery','-A','test_celery', 'worker', '--loglevel=info']
+ENTRYPOINT ["celery","-A","tasks", "worker", "--loglevel=info"]

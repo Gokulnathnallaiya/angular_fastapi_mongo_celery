@@ -17,17 +17,8 @@ p {
     margin:0;
     padding: 0;
 }
-
-.svgimg {
-    width:16px
-}
-.svgimgkaggle {
-    width:50px
-}
-a {
-    color: black !important
-}
-
-.card-body {
-    cursor: pointer;
+.powered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

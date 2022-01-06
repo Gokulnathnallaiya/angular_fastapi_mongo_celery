@@ -16,6 +16,10 @@ import { RegisterModalContent } from './regiseterModal/registerModal.component';
 import { LoginModalContent } from './LoginModal/loginModal.component';
 import { AuthInterceptor } from './services/authInterceptor';
 import { DataSharingService } from './services/datasharing.service';
+import { KagglesearchComponent } from './kagglesearch/kagglesearch.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { DatasetFilesComponent } from './dataset-files/dataset-files.component';
+import { KaggleDatasetViewerComponent } from './kaggle-dataset-viewer/kaggle-dataset-viewer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,12 @@ import { DataSharingService } from './services/datasharing.service';
     ViewDatasetComponent,
     RegisterModalContent,
     LoginModalContent,
-    KeysPipe
+    KeysPipe,
+    KagglesearchComponent,
+    SearchResultsComponent,
+    DatasetFilesComponent,
+    KaggleDatasetViewerComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,8 @@ import { DataSharingService } from './services/datasharing.service';
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    
   ],
   providers: [
     DataSharingService,

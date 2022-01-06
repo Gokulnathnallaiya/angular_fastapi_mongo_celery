@@ -1,0 +1,50 @@
+<div class="container-fluid mt-3">
+    <div class="container-fluid">
+        <div class="alert alert-danger" role="alert" *ngIf="savingFailed" style="vertical-align: middle;">
+            <i class="bi bi-check" style="color: rgb(128, 0, 0); font-size: 20px; height: 40px"></i>
+            Please try again !
+        </div>
+        <div class="alert alert-warning" role="alert" *ngIf="savingInProgress" style="vertical-align: middle;">
+            <i class="bi bi-check" style="color: rgb(207, 189, 21); font-size: 20px; height: 40px"></i>
+            Please wait, Saving Your query !
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="saveSuccess" style="vertical-align: middle;">
+            <i class="bi bi-check" style="color: green; font-size: 20px; height: 40px"></i>
+            File Saved Successfully !
+        </div>
+
+    </div>
+
+    <div class="table_header">
+
+        <h5>View Dataset</h5>
+        <button class="btn btn-success" *ngIf="!isLoading" (click)="saveData()">
+            Save
+            <span class="{{isSaving ?'spinner-grow spinner-grow-sm' : ''}}" role="status" aria-hidden="true"></span>
+        </button>
+    </div>
+    <table class="table mt-3 table-bordered">
+        <thead>
+            <tr>
+                <th *ngFor="let column of columns">{{column}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of retrivedData">
+                <td *ngFor="let list of item | keys">{{item[list]}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="isLoading" class="d-flex justify-content-center">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+
+    </div>
+</div>

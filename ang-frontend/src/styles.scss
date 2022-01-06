@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import '~font-awesome/css/font-awesome.css';
 html, body { height: 100%; font-family: 'Licorice', cursive;
 font-family: 'Open Sans', sans-serif;}
 body { margin: 0; font-family: 'Licorice', cursive; }
@@ -19,4 +20,11 @@ input.ng-valid{
 .errorMessage {
     color: red;
     font-size: 12px;
+}
+
+.nav-tabs .nav-link.active {
+    font-weight: bolder;
+    border: 1px solid black !important;
+    border-bottom: 2px !important;
+    // background-color: red !important; 
 }

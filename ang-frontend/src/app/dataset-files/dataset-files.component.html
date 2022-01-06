@@ -1,0 +1,35 @@
+<div class="container" style="margin-top: 2rem">
+    <h3 style="margin-bottom: 20px;">we have found {{searchResults.length}} {{searchParams.length > 1 ? 'files':
+        'file'}} in the dataset "{{searchParams}}"</h3>
+    <div class="row row-cols-1 row-cols-md-5 g-5">
+        <div class="col" *ngFor="let result of searchResults; let i=index">
+            <div class="card h-200">
+                <div class="profile_image">
+                    <img class="svgimg" src="/assets/csv-svgrepo-com.svg ">
+                </div>
+                <div class="card-body">
+                    <h5 style="font-size: medium;" class="card-title">{{result}}</h5>
+                    <div>
+                        <a class="kagglelink" (click)="navigate(result, 'head')"><i class="bi bi-link-45deg"> </i><span
+                                class="alink">
+                                HEAD</span></a>
+                    </div>
+                    <div>
+                        <span class="kagglelink" (click)="navigate(result, 'tail')"><i class="bi bi-link-45deg"> </i>
+                            <span class="alink">
+                                TAIL</span></span>
+                    </div>
+                    <div>
+                        <span class="kagglelink" (click)="navigate(result, 'describe')"><i
+                                class="bi bi-link-45deg"></i><span class="alink">
+                                DESCRIBE</span></span>
+                    </div>
+
+                    <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional
+                        content. This content is a little bit longer.</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

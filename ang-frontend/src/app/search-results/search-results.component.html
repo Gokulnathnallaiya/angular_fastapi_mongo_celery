@@ -1,0 +1,26 @@
+<div class="container" style="margin-top: 2rem">
+    <h3 style="margin-bottom: 20px;">Search Results for "{{searchParams}}"</h3>
+    <div class="row row-cols-1 row-cols-md-4 g-5">
+        <div class="col" *ngFor="let result of searchResults; let i=index">
+            <div class="card h-200">
+                <div class="profile_image" (click)="navigate(result)">
+                    <h1>{{result["title"] | uppercase | slice:0:1 }}{{result["subtitle"] || result["title"] |uppercase|
+                        slice:0:1}}
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <h5 (click)="navigate(result)" style="font-size: medium; cursor: pointer;" class="card-title">
+                        {{result["title"]}}-{{result["subtitle"] }}</h5>
+                    <div>
+                        <a class="kagglelink" href="{{result['url']}}"><u>{{result['ownerName']}} </u><i
+                                class="bi bi-box-arrow-up-right"></i></a>
+                    </div>
+
+                    <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional
+                        content. This content is a little bit longer.</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

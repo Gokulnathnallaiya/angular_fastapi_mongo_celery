@@ -1,47 +1,72 @@
-<div style="background-color: #d6d6d6; height: 100vh">
-    <div class="container-fluid h-50 dataset-form" style="background-color: #4377cc;">
-        <div class="row justify-content-center" style="color:white">
-            <div class="col-sm-6 align-self-center mt-5">
-                <div class=" mb-6 " style="text-align: center;">
-                    <form [formGroup]="mainForm">
-                        <label for="exampleFormControlInput1" class="form-label fs-1">Free Online Dataset
-                            Explorer</label>
-                        <p>View,save and Retrive Datasets</p>
-                        <input formControlName="path" type="email" class="form-control form-control-lg mt-3 "
-                            id="exampleFormControlInput1" placeholder="Enter Path to Explore">
-                        <button class="btn btn-success mt-3 me-3" (click)="navigate('head')">Fetch Head</button>
-                        <button class="btn btn-success mt-3 me-3" (click)="navigate('tail')">Fetch Tail</button>
-                        <button class="btn btn-success mt-3 me-3" (click)="navigate('description')">Fetch
-                            Description</button>
-                        <button class="btn btn-success mt-3 me-3" (click)="navigate('all')">Fetch All</button>
-                    </form>
-                    <!-- <p class="mt-5">Developed by <span><a href="/">Gokulnath</a></span></p> -->
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li ngbNavItem>
+        <a ngbNavLink><span><img class="svgimgkaggle" src="/assets/kaggle.svg "> Kaggle Explorer</span></a>
+
+        <ng-template ngbNavContent>
+            <app-kagglesearch></app-kagglesearch>
+        </ng-template>
+    </li>
+    <li ngbNavItem>
+        <a ngbNavLink><span><img class="svgimg" src="/assets/csv-svgrepo-com.svg "> CSV Explorer</span>
+        </a>
+        <ng-template ngbNavContent>
+            <div style=" background-color: #d6d6d6; height: 100vh">
+
+                <div class="container-fluid h-50 dataset-form" style="background-color: #4377cc;">
+
+                    <div class="row justify-content-center" style="color:white">
+                        <div class="col-sm-6 align-self-center mt-5">
+                            <div class=" mb-6 " style="text-align: center;">
+                                <form [formGroup]="mainForm">
+                                    <label for="exampleFormControlInput1" class="form-label fs-1">Free Online CSV
+                                        Explorer</label>
+                                    <p>View,save and Retrive Datasets</p>
+                                    <input formControlName="path" type="email"
+                                        class="form-control form-control-lg mt-3 " id="exampleFormControlInput1"
+                                        placeholder="Enter Path to Explore">
+                                    <button class="btn btn-success mt-3 me-3" (click)="navigate('head')">Fetch
+                                        Head</button>
+                                    <button class="btn btn-success mt-3 me-3" (click)="navigate('tail')">Fetch
+                                        Tail</button>
+                                    <button class="btn btn-success mt-3 me-3" (click)="navigate('description')">Fetch
+                                        Description</button>
+                                    <button class="btn btn-success mt-3 me-3" (click)="navigate('all')">Fetch
+                                        All</button>
+                                </form>
+                                <!-- <p class="mt-5">Developed by <span><a href="/">Gokulnath</a></span></p> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    <h3 class="mt-5">How it works ?</h3>
+                    <ul>
+                        <li>
+                            <p><span style="vertical-align: middle;"><i class="bi bi-check"
+                                        style="color: green; font-size: 30px;"></i></span>Create An Account </p>
+                        </li>
+                        <li>
+                            <p><span style="vertical-align: middle;"><i class="bi bi-check"
+                                        style="color: green; font-size: 30px;"></i></span>Enter the path. View or save
+                                any dataset
+                            </p>
+                        </li>
+                        <li>
+                            <p><span style="vertical-align: middle;"><i class="bi bi-check"
+                                        style="color: green; font-size: 30px;"></i></span>Download saved Dataset's any
+                                time, any
+                                where</p>
+                        </li>
+                    </ul>
+
+
+
                 </div>
             </div>
-        </div>
+        </ng-template>
+    </li>
 
-    </div>
-
-    <div class="container">
-        <h3 class="mt-5">How it works ?</h3>
-        <ul>
-            <li>
-                <p><span style="vertical-align: middle;"><i class="bi bi-check"
-                            style="color: green; font-size: 30px;"></i></span>Create An Account </p>
-            </li>
-            <li>
-                <p><span style="vertical-align: middle;"><i class="bi bi-check"
-                            style="color: green; font-size: 30px;"></i></span>Enter the path. View or save any dataset
-                </p>
-            </li>
-            <li>
-                <p><span style="vertical-align: middle;"><i class="bi bi-check"
-                            style="color: green; font-size: 30px;"></i></span>Download saved Dataset's any time, any
-                    where</p>
-            </li>
-        </ul>
-
-
-
-    </div>
-</div>
+</ul>
+<div [ngbNavOutlet]="nav"></div>

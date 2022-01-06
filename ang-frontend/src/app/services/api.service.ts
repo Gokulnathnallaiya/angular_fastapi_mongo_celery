@@ -38,4 +38,24 @@ export class ApiService {
   getTaskStatus(id: string) {
     return this.http.get<any>(environment.API_URL + `/task/status/${id}`)
   }
+
+  getKaggleDatasetList(search: string){
+    return this.http.post<any>(environment.API_URL + `/kaggle/dataset-list`, {search:search})
+  }
+
+  getDatasetFiles(datasetName: string){
+    
+    return this.http.post<any>(environment.API_URL + `/kaggle/dataset-list-files`, {datasetName:datasetName})
+  }
+
+
+  getKaggleData(body: any){
+        return this.http.post<any>(environment.API_URL + `/kaggle/get_data`, body)
+
+  }
+
+  saveKaggleData(body: any){
+        return this.http.post<any>(environment.API_URL + `/query/save_kaggle_query`, body)
+
+  }
 }

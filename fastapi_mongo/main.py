@@ -3,11 +3,14 @@ from routes.user import user
 from routes.query import query
 from routes.tasks import task_routes
 from routes.blob_routes import blob_routes
+from routes.kaggle import kaggle_routes
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-
+import kaggle
 
 app = FastAPI()
+kaggle.api.authenticate()
+
 
 origins = ["*"]
 
@@ -22,6 +25,7 @@ app.include_router(task_routes, prefix="/task")
 app.include_router(user, prefix="/auth")
 app.include_router(query, prefix='/query')
 app.include_router(blob_routes, prefix='/blob')
+app.include_router(kaggle_routes, prefix='/kaggle')
 
 
 if __name__ =='__main__':

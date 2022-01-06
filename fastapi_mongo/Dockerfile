@@ -1,6 +1,8 @@
 FROM python:3.7
+COPY kaggle.json /root/.kaggle/kaggle.json
 WORKDIR /app
 COPY requirements.txt .
+
 RUN pip install -r requirements.txt
 COPY . /app
 CMD [ "python", "main.py" ]

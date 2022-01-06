@@ -5,3 +5,4 @@ azure-storage-blob
 pandas
 typing
 fastapi
+kaggle

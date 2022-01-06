@@ -33,7 +33,7 @@ export class SavedQueriesComponent implements OnInit {
 
   download_file(filename:string){
 
-    return "http://localhost:9000/blob/download/pdqueries/"+ filename
+    return "http://13.92.80.122:9000/blob/download/pdqueries/"+ filename
   }
    
 
