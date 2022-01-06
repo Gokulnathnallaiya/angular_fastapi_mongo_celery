@@ -10,6 +10,7 @@ export class SearchResultsComponent implements OnInit {
 
   searchParams = ""
   searchResults = []
+  isLoading:boolean = false
 
   constructor( private route : ActivatedRoute, private api: ApiService, private router : Router) { }
 
@@ -17,8 +18,9 @@ export class SearchResultsComponent implements OnInit {
     
     this.route.params.subscribe(paramsId=> {
         this.searchParams = paramsId['search']
+        this.isLoading = true
         this.api.getKaggleDatasetList(this.searchParams).subscribe(res=>{
-
+          this.isLoading = false
           if(res.message){
             this.searchResults = res.message
             console.log(res.message)

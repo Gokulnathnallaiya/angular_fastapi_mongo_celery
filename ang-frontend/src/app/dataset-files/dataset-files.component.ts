@@ -11,6 +11,7 @@ export class DatasetFilesComponent implements OnInit {
   
   searchParams : any = ""
   searchResults = []
+  isLoading: boolean = false
   constructor( private router : Router, private api: ApiService,private route : ActivatedRoute) { 
 
    
@@ -20,8 +21,9 @@ export class DatasetFilesComponent implements OnInit {
    ngOnInit(): void {
      this.route.queryParamMap.subscribe((params:any) => {
        this.searchParams = params.params['datasetName']
+       this.isLoading = true
        this.api.getDatasetFiles(this.searchParams).subscribe(res=>{
-
+        this.isLoading = false
           if(res.message){
             this.searchResults = res.message
             console.log(res.message)
